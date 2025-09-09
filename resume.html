@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debasis Parida - Resume with PDF Download</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #34495e;
+            --background: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+        
+        .resume-container {
+            background: var(--background);
+            box-shadow: var(--shadow);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        /* Header Section */
+        .resume-header {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--secondary);
+        }
+        
+        .header-content {
+            margin-left: 30px;
+            flex: 1;
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Resume Body */
+        .resume-body {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+        
+        .main-column, .side-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid var(--light);
+        }
+        
+        .item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .item-subtitle {
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        
+        .item-date {
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill {
+            background: var(--light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .skill:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: var(--light);
+            border-radius: 4px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--secondary);
+            border-radius: 4px;
+        }
+        
+        /* Download Button */
+        .download-btn {
+            background: var(--accent);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 30px auto;
+            display: block;
+            width: 250px;
+            text-align: center;
+            justify-content: center;
+        }
+        
+        .download-btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 5px;
+            background: #27ae60;
+            color: white;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.error {
+            background: #e74c3c;
+        }
+        
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            color: white;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .resume-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .resume-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-content {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            
+            .contact-info {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .name {
+                font-size: 2rem;
+            }
+            
+            .title {
+                font-size: 1.1rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .download-btn {
+                width: 200px;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="resume-container" id="resume">
+            <header class="resume-header">
+                <img src="./images/1699492_P3OLGJ1 1_.png" alt="Profile Photo" class="profile-img">
+                <div class="header-content">
+                    <h1 class="name">Debasis Parida</h1>
+                    <p class="title">Senior UI Developer & Frontend Specialist</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>debasis15parida@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Hyderabad, India</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="resume-body">
+                <div class="main-column">
+                    <section class="section">
+                        <h2 class="section-title"><i class="fas fa-user"></i> About Me</h2>
+                        <p>Results-driven UI Developer with 3+ years of experience in building cross-platform mobile and desktop applications. Specialized in Ionic Framework, Angular, and React. Passionate about creating intuitive user experiences with clean, efficient code.</p>
+                    </section>
+                    
+                    <section class="section">
+                        <h2 class="section-title"><i class="fas fa-briefcase"></i> Experience</h2>
+                        <div class="experience-item">
+                            <h3 class="item-title">UI Developer</h3>
+                            <p class="item-subtitle">RetailSols Pvt Ltd | Hyderabad, India</p>
+                            <p class="item-date">Nov 2021 – Present</p>
+                            <ul>
+                                <li>Developed and maintained cross-platform mobile applications using Ionic and Angular</li>
+                                <li>Designed seamless UI/UX with HTML, CSS, SCSS, and TypeScript</li>
+                                <li>Integrated Capacitor for native Android and iOS functionality</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="experience-item">
+                            <h3 class="item-title">Frontend Developer</h3>
+                            <p class="item-subtitle">TechSolutions Inc | Bangalore, India</p>
+                            <p class="item-date">Jun 2019 – Oct 2021</p>
+                            <ul>
+                                <li>Developed responsive web applications using React and Redux</li>
+                                <li>Collaborated with UX designers to implement pixel-perfect designs</li>
+                                <li>Optimized applications for maximum speed and scalability</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section class="section">
+                        <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+                        <div class="education-item">
+                            <h3 class="item-title">B.Tech in Computer Science Engineering</h3>
+                            <p class="item-subtitle">Nalanda Institute of Technology, Bhubaneswar</p>
+                            <p class="item-date">2017 – 2021 | CGPA: 8.1</p>
+                        </div>
+                    </section>
+                </div>
+                
+                <div class="side-column">
+                    <section class="section">
+                        <h2 class="section-title"><i class="fas fa-star"></i> Skills</h2>
+                        <div class="skills-list">
+                            <span class="skill">JavaScript</span>
+                            <span class="skill">TypeScript</span>
+                            <span class="skill">Angular</span>
+                            <span class="skill">React</span>
+                            <span class="skill">Ionic Framework</span>
+                            <span class="skill">HTML5</span>
+                            <span class="skill">CSS3</span>
+                            <span class="skill">SCSS</span>
+                            <span class="skill">Responsive Design</span>
+                            <span class="skill">UI/UX Design</span>
+                            <span class="skill">Git</span>
+                            <span class="skill">RESTful APIs</span>
+                        </div>
+                    </section>
+                    
+                    <section class="section">
+                        <h2 class="section-title"><i class="fas fa-medal"></i> Proficiency</h2>
+                        <div class="skill-item">
+                            <p>JavaScript/TypeScript</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <p>Angular Framework</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <p>React & Redux</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <p>UI/UX Design</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="section">
+                        <h2 class="section-title"><i class="fas fa-language"></i> Languages</h2>
+                        <div class="skill-item">
+                            <p>English</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <p>Hindi</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <p>Odia</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="section">
+                        <h2 class="section-title"><i class="fas fa-certificate"></i> Certifications</h2>
+                        <div class="education-item">
+                            <h3 class="item-title">Angular Expert Certification</h3>
+                            <p class="item-subtitle">Google Developers</p>
+                            <p class="item-date">2022</p>
+                        </div>
+                        <div class="education-item">
+                            <h3 class="item-title">React Frontend Development</h3>
+                            <p class="item-subtitle">Meta</p>
+                            <p class="item-date">2021</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        
+        <button class="download-btn" id="downloadBtn">
+            <i class="fas fa-download"></i> Download as PDF
+        </button>
+    </div>
+    
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Resume downloaded successfully!</span>
+    </div>
+    
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Generating your PDF resume...</p>
+    </div>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            // Show loading overlay
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('active');
+            
+            // Get the resume element
+            const resume = document.getElementById('resume');
+            
+            // Configuration for html2pdf
+            const opt = {
+                margin: 10,
+                filename: 'Debasis_Parida_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            // Generate and download PDF
+            html2pdf().set(opt).from(resume).save().then(() => {
+                // Hide loading overlay
+                loadingOverlay.classList.remove('active');
+                
+                // Show success notification
+                const notification = document.getElementById('notification');
+                notification.classList.add('show');
+                
+                // Hide notification after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }).catch(error => {
+                // Hide loading overlay
+                loadingOverlay.classList.remove('active');
+                
+                // Show error notification
+                const notification = document.getElementById('notification');
+                notification.classList.add('error', 'show');
+                notification.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Error generating PDF. Please try again.</span>';
+                
+                // Hide notification after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show', 'error');
+                    notification.innerHTML = '<i class="fas fa-check-circle"></i><span>Resume downloaded successfully!</span>';
+                }, 3000);
+                
+                console.error('PDF generation error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

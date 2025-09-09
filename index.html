@@ -6,768 +6,8 @@
     <title>Debasis Parida - UI Developer Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: #474747;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-            overflow-x: hidden;
-        }
-
-        .text-primary {
-            color: #FD6E0A;
-        }
-
-        .section-title {
-            color: #181818;
-            text-align: center;
-            font-size: 35px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: #FD6E0A;
-            margin: 15px auto;
-        }
-
-        .section-des {
-            color: #757575;
-            text-align: center;
-            font-size: 18px;
-            max-width: 900px;
-            margin: 0 auto 50px;
-            line-height: 1.8;
-        }
-
-        .btn-primary {
-            border-radius: 5px;
-            background: #FD6E0A;
-            border: 0;
-            font-size: 20px;
-            font-weight: 700;
-            color: white;
-            padding: 15px 35px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
-            text-decoration: none;
-        }
-
-        .btn-primary:hover {
-            background: #e05c06;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header & Navigation */
-        header {
-            background-color: #FFF8F3;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .nav-title {
-            color: #181818;
-            font-size: 45px;
-            font-weight: 800;
-        }
-
-        nav ul {
-            display: flex;
-            align-items: center;
-            list-style: none;
-        }
-
-        nav li {
-            margin-left: 50px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #474747;
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 18px;
-        }
-
-        nav a:hover {
-            color: #FD6E0A;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #181818;
-        }
-
-        /* Banner */
-        .banner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 80px 20px;
-            background-color: #FFF8F3;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23FFF8F3"/><path d="M0 0 L100 100 M100 0 L0 100" stroke="%23FD6E0A" stroke-opacity="0.1" stroke-width="2"/></svg>');
-            background-size: cover;
-        }
-
-        .banner-content {
-            max-width: 585px;
-        }
-
-        .profile-pic {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .banner-greeting {
-            font-size: 45px;
-            font-weight: 600;
-            color: #474747;
-            margin-bottom: 5px;
-        }
-
-        .banner-title {
-            font-size: 85px;
-            font-weight: 700;
-            margin: 0;
-            color: #181818;
-            line-height: 1.1;
-        }
-
-        .description {
-            margin: 20px 0 30px;
-            font-size: 18px;
-            line-height: 1.8;
-        }
-
-        .banner-buttons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        /* About Section */
-        .about {
-            padding: 130px 0;
-            background: #FFF;
-            margin: 100px 0;
-        }
-
-        .about-info-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .about-info {
-            text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            background: #FFF8F3;
-            min-width: 200px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .info-title {
-            color: #757575;
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-
-        .info-des {
-            color: #474747;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        /* Skills Section */
-        .skills-section {
-            padding: 80px 0;
-            background: #FFF8F3;
-        }
-
-        .skill-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 24px;
-            margin-top: 50px;
-        }
-
-        .skill {
-            flex: 1;
-            min-width: 250px;
-            max-width: 267px;
-            padding: 30px;
-            border-radius: 10px;
-            background: #FFF;
-            box-shadow: 0 6px 50px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-
-        .skill:hover {
-            transform: translateY(-10px);
-        }
-
-        .skill img {
-            margin-bottom: 30px;
-            height: 44px;
-        }
-
-        .skill-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .skill-description {
-            color: #757575;
-            line-height: 1.8;
-        }
-
-        /* Resume Section */
-        .resume-section {
-            padding: 80px 0;
-            background: #FFF;
-        }
-
-        .resume-container {
-            display: flex;
-            gap: 70px;
-            margin: 70px 0;
-            flex-wrap: wrap;
-        }
-
-        .resume-column {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .resume-column-title {
-            color: #474747;
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #FD6E0A;
-        }
-
-        .resume-item {
-            padding: 30px;
-            border-radius: 10px;
-            background: #FAFAFA;
-            box-shadow: 0 6px 50px rgba(0, 0, 0, 0.06);
-            margin-bottom: 30px;
-            border-left: 4px solid #FD6E0A;
-        }
-
-        .resume-item-title {
-            color: #474747;
-            font-size: 25px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .resume-item-institute {
-            color: #757575;
-            font-size: 20px;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .resume-item-description {
-            color: #757575;
-            line-height: 1.8;
-        }
-
-        .download-cv {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        /* Experience Section */
-        .experience-section {
-            padding: 80px 0;
-            background: #FFF8F3;
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .timeline:before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            background: #FD6E0A;
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            padding: 20px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            padding-right: 70px;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            padding-left: 70px;
-        }
-
-        .timeline-content {
-            padding: 20px;
-            background: #FFF;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .timeline-content:after {
-            content: '';
-            position: absolute;
-            top: 30px;
-            width: 20px;
-            height: 20px;
-            background: #FFF;
-            transform: rotate(45deg);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content:after {
-            right: -10px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content:after {
-            left: -10px;
-        }
-
-        .timeline-date {
-            font-weight: 700;
-            color: #FD6E0A;
-            margin-bottom: 10px;
-        }
-
-        .timeline-title {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #181818;
-        }
-
-        /* Projects Section */
-        .projects-section {
-            padding: 80px 0;
-            background: #FFF;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .project-card {
-            background: #FFF;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-img {
-            width: 100%;
-            height: 200px;
-            background: #FD6E0A;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 40px;
-        }
-
-        .project-content {
-            padding: 20px;
-        }
-
-        .project-title {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #181818;
-        }
-
-        .project-description {
-            color: #757575;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .tech-tag {
-            background: #FFF8F3;
-            color: #FD6E0A;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        /* Footer */
-        footer {
-            background: #181818;
-            color: #FFF;
-            padding: 80px 0 30px;
-        }
-
-        .footer-container {
-            display: flex;
-            gap: 100px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-        }
-
-        .footer-column {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .footer-title {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #FD6E0A;
-        }
-
-        .footer-description {
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: #FD6E0A;
-            border-radius: 50%;
-            color: white;
-            text-align: center;
-            line-height: 40px;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: #FFF;
-            color: #FD6E0A;
-            transform: translateY(-5px);
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-family: inherit;
-            background: #2c2c2c;
-            color: #FFF;
-        }
-
-        .contact-form textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #2c2c2c;
-            color: #757575;
-        }
-
-        /* Form Status Messages */
-        .form-status {
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            text-align: center;
-            display: none;
-        }
-        
-        .form-status.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            display: block;
-        }
-        
-        .form-status.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            display: block;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .banner-title {
-                font-size: 70px;
-            }
-            
-            .resume-container {
-                gap: 50px;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .banner-title {
-                font-size: 60px;
-            }
-            
-            .timeline:before {
-                left: 30px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 80px;
-                padding-right: 0;
-            }
-            
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
-                left: 0;
-                padding-right: 0;
-                padding-left: 80px;
-            }
-            
-            .timeline-item:nth-child(odd) .timeline-content:after,
-            .timeline-item:nth-child(even) .timeline-content:after {
-                left: -10px;
-                right: auto;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .banner {
-                flex-direction: column;
-                text-align: center;
-                gap: 40px;
-                padding: 60px 20px;
-            }
-            
-            .banner-content {
-                order: 2;
-            }
-            
-            .profile-pic {
-                order: 1;
-                max-width: 400px;
-            }
-            
-            .banner-buttons {
-                justify-content: center;
-            }
-            
-            .banner-title {
-                font-size: 50px;
-            }
-            
-            .banner-greeting {
-                font-size: 30px;
-            }
-            
-            .about-info-container {
-                gap: 20px;
-            }
-            
-            .footer-container {
-                gap: 50px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: #FFF;
-                padding: 20px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-                z-index: 100;
-            }
-            
-            nav ul.show {
-                display: flex;
-            }
-            
-            nav li {
-                margin: 15px 0;
-                margin-left: 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-title {
-                font-size: 35px;
-            }
-            
-            .section-title {
-                font-size: 30px;
-            }
-            
-            .about {
-                padding: 80px 0;
-                margin: 60px 0;
-            }
-            
-            .resume-container {
-                flex-direction: column;
-            }
-            
-            .footer-container {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .banner-title {
-                font-size: 40px;
-            }
-            
-            .btn-primary {
-                padding: 12px 25px;
-                font-size: 16px;
-                width: 100%;
-                text-align: center;
-            }
-            
-            .banner-buttons {
-                flex-direction: column;
-            }
-            
-            .skill {
-                min-width: 100%;
-            }
-            
-            .profile-pic {
-                max-width: 300px;
-            }
-            
-            .section-title {
-                font-size: 28px;
-            }
-            
-            .section-des {
-                font-size: 16px;
-            }
-            
-            .timeline-item {
-                padding-left: 50px;
-                padding-right: 20px;
-            }
-            
-            .resume-item {
-                padding: 20px;
-            }
-            
-            .footer-column {
-                min-width: 100%;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .banner-title {
-                font-size: 35px;
-            }
-            
-            .banner-greeting {
-                font-size: 25px;
-            }
-            
-            .nav-title {
-                font-size: 28px;
-            }
-            
-            .about-info {
-                min-width: 100%;
-            }
-            
-            .project-tech {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
+ <link rel="stylesheet" href="./style/index.css">
+        <script src="script/index.js" defer></script>
 </head>
 <body>
     <header class="header"> 
@@ -782,7 +22,6 @@
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a class="btn-primary">Hire Me</a></li>
             </ul>
         </nav>
     </header>
@@ -796,15 +35,12 @@
                     Results-driven UI Developer with 3+ years of experience in building cross-platform mobile and desktop applications. Specialized in Ionic Framework, Angular, and React.
                 </p>
                 <div class="banner-buttons">
-                    <a href="#contact" class="btn-primary"><i class="fa-solid fa-download"></i> Download CV</a>
+                    <a href="./resume.html" class="btn-primary"><i class="fa fa-eye"></i> View CV</a>
                     <a href="#contact" class="btn-primary"><i class="fa-solid fa-phone"></i> Contact</a>
                 </div>
             </div>
-            <div class="profile-pic">
-                <img src="images/1699492_P3OLGJ1 1_.png" alt="Debasis Parida" style="width:100%; height:50%; border-radius:10px; object-fit:cover; box-shadow:0 10px 30px rgba(0,0,0,0.15);">
-                <div style="width:100%; height:100%; background:#FD6E0A; display:flex; align-items:center; justify-content:center; color:white; font-size:80px;">
-                   
-                </div>
+            <div >
+                <img class="profile-pic" src="./images/1699492_P3OLGJ1 1_.png" alt="Debasis Parida - UI Developer">
             </div>
         </div>
     </div>
@@ -846,22 +82,22 @@
 
             <div class="skill-container">
                 <div class="skill">
-                    <i class="fab fa-js-square" style="font-size: 50px; color: #FD6E0A;"></i>
+                    <i class="fab fa-js-square" style="font-size: 45px; color: #FD6E0A;"></i>
                     <h3 class="skill-title">JavaScript</h3>
                     <p class="skill-description">Extensive experience with modern JavaScript (ES6+) for building interactive web applications.</p>
                 </div>
                 <div class="skill">
-                    <i class="fab fa-angular" style="font-size: 50px; color: #FD6E0A;"></i>
+                    <i class="fab fa-angular" style="font-size: 45px; color: #FD6E0A;"></i>
                     <h3 class="skill-title">Angular</h3>
                     <p class="skill-description">Building dynamic single-page applications with Angular framework and related technologies.</p>
                 </div>
                 <div class="skill">
-                    <i class="fab fa-react" style="font-size: 50px; color: #FD6E0A;"></i>
+                    <i class="fab fa-react" style="font-size: 45px; color: #FD6E0A;"></i>
                     <h3 class="skill-title">React</h3>
                     <p class="skill-description">Developing responsive user interfaces with React, hooks, and state management solutions.</p>
                 </div>
                 <div class="skill">
-                    <i class="fas fa-mobile-alt" style="font-size: 50px; color: #FD6E0A;"></i>
+                    <i class="fas fa-mobile-alt" style="font-size: 45px; color: #FD6E0A;"></i>
                     <h3 class="skill-title">Ionic Framework</h3>
                     <p class="skill-description">Creating cross-platform mobile applications with Ionic and Capacitor for native functionality.</p>
                 </div>
@@ -882,7 +118,7 @@
                         <div class="timeline-date">Nov 2021 – Present</div>
                         <h3 class="timeline-title">UI Developer</h3>
                         <p class="timeline-company">RetailSols Pvt Ltd | Hyderabad, India</p>
-                        <ul style="color: #757575; margin-top: 15px; padding-left: 20px;">
+                        <ul style="color: #757575; margin-top: 12px; padding-left: 18px;">
                             <li>Developed and maintained cross-platform mobile applications using Ionic and Angular</li>
                             <li>Designed seamless UI/UX with HTML, CSS, SCSS, and TypeScript</li>
                             <li>Integrated Capacitor for native Android and iOS functionality</li>
@@ -961,6 +197,7 @@
         </div>
     </section>
 
+
     <footer id="contact">
         <div class="container">
             <div class="footer-container">
@@ -977,18 +214,13 @@
 
                 <div class="footer-column">
                     <h3 class="footer-title">Let's Message me</h3>
-                    <!-- FormSubmit.co form - Replace YOUR_EMAIL with your actual email -->
-                    <form class="contact-form" action="https://formsubmit.co/your_email@example.com" method="POST">
-                        <!-- FormSubmit configuration -->
-                        <input type="hidden" name="_subject" value="New portfolio contact!">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
-                        
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <textarea name="message" placeholder="Message" required></textarea>
-                        <button class="btn-primary" type="submit">Submit</button>
+                    <form class="contact-form" id="contactForm">
+                        <input type="text" name="name" id="name" placeholder="Your Name" required>
+                        <input type="email" name="email" id="email" placeholder="Your Email" required>
+                        <textarea name="message" id="message" placeholder="Message" required></textarea>
+                        <button class="btn-primary" type="submit" id="submitBtn">Submit</button>
                     </form>
+                    <div id="formStatus" class="form-status"></div>
                 </div>
             </div>
             <div class="copyright">
@@ -996,43 +228,19 @@
             </div>
         </div>
     </footer>
+
+    <!-- Confirmation Popup -->
+    <div class="popup-overlay" id="confirmationPopup">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="popup-title">Thank You!</h3>
+            <p class="popup-message">Your message has been submitted successfully. We will contact you back shortly.</p>
+            <button class="popup-close" onclick="closePopup()">OK</button>
+        </div>
+    </div>
     
-    <script>
-        // Mobile menu toggle
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const navMenu = document.getElementById('nav-menu');
-        
-        menuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !menuBtn.contains(e.target) && navMenu.classList.contains('show')) {
-                navMenu.classList.remove('show');
-            }
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu after clicking a link
-                    navMenu.classList.remove('show');
-                }
-            });
-        });
-    </script>
+ 
 </body>
 </html>
